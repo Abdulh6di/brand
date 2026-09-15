@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-display: var(--font-bodoni), "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Core palette — warm, editorial, restrained */
+  --color-ivory: #f7f3ec;
+  --color-warm-white: #fbf9f5;
+  --color-paper: #f1ece2;
+  --color-beige: #ddd2bf;
+  --color-taupe: #a6957e;
+  --color-charcoal: #2a2723;
+  --color-ink: #17140f;
+  --color-line: #e3d9c9;
+  --color-line-strong: #cabca4;
+
+  /* Metallic accent — muted antique bronze */
+  --color-accent: #a4823f;
+  --color-accent-soft: #c9ad74;
+  --color-accent-dark: #7c5f2c;
+
+  /* Semantic (muted, never neon) */
+  --color-success: #4b6355;
+  --color-success-soft: #e7ece7;
+  --color-error: #9c3d34;
+  --color-error-soft: #f4e6e3;
+  --color-warning: #a9793f;
+  --color-warning-soft: #f3ead9;
+
+  /* Radii — sharp, minimal, not "app-like" rounded */
+  --radius-none: 0px;
+  --radius-sm: 1px;
+  --radius-md: 2px;
+
+  /* Easing */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-background: var(--color-warm-white);
+  --color-foreground: var(--color-ink);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-warm-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" 1, "cv01" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .tracking-editorial {
+    letter-spacing: 0.18em;
+  }
+
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-taupe);
+  }
+
+  .hairline {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .container-editorial {
+    max-width: 1600px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-editorial {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-editorial {
+      padding-inline: 4rem;
+    }
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s var(--ease-editorial) both;
+}
